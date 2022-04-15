@@ -23,7 +23,7 @@ npm run start:prod
 
 To run in development mode, which includes the DevTools inside the browser window, as well as an **F5** shortcut to reload the application, use `npm start` instead of `npm run start:prod`.
 
-I use Electron Forge to run and build the project. To create the final executable file of the application, use `npm run make:all`. Further information can be found [here](https://www.electronforge.io/).
+I use Electron Forge to run and build the project. Before building, make sure to read these [build notes](#build-notes) first. To create the final executable file of the application, use `npm run make:all`. Further information can be found [here](https://www.electronforge.io/).
 
 [![js-semistandard-style](https://raw.githubusercontent.com/standard/semistandard/master/badge.svg)](https://github.com/standard/semistandard)
 
@@ -182,6 +182,14 @@ A `package.cam.json` file must have the following keys (not necessarily all).
 ### Force Package Installation
 
 If forcing is enabled when installing a package, it will overwrite the package in the collection if they have the same version. Furthermore, it will default to use the components that come with the package by forcefully installing the ones specified with `ref`.
+
+## Build Notes
+
+On Linux (Ubuntu specifically), make sure to run this command to install the required libraries before building.
+
+```
+sudo apt install dpkg fakeroot rpm
+```
 
 ## Platform
 
