@@ -1,0 +1,14 @@
+/*
+!addon/
+!dist/
+!lib/
+!mode/
+!src/
+!template/
+!theme/
+!.gitignore
+!component.cam.json
+!inline.js
+!package.json
+!package-lock.json
+!webpack.config.js

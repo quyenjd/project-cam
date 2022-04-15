@@ -1,0 +1,9 @@
+/*
+!dist/
+!src/
+!template/
+!.gitignore
+!component.cam.json
+!package.json
+!package-lock.json
+!webpack.config.js
