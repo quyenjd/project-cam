@@ -1,0 +1,15 @@
+{
+    "type": "component",
+    "id": "project-cam-data-loader",
+    "version": "1.3.0",
+    "name": "Data Loader",
+    "description": "This component is for loading files from External or Local sources.",
+    "output": [
+        {
+            "name": "data"
+        }
+    ],
+    "category": "Data Loader",
+    "files": "dist/*",
+    "indexFile": "dist/index.html"
+}

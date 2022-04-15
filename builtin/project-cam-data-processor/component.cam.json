@@ -1,0 +1,24 @@
+{
+    "type": "component",
+    "id": "project-cam-data-processor",
+    "version": "1.0.0",
+    "name": "Data Processor",
+    "description": "This component is for processing string data using JavaScript editable script.",
+    "input": [
+        {
+            "limit": 1,
+            "name": "data",
+            "required": true
+        }
+    ],
+    "output": [
+        {
+            "name": "data"
+        }
+    ],
+    "category": "Data Processing",
+    "files": "dist/*",
+    "indexFile": "dist/index.html",
+    "defaultHeight": 360,
+    "defaultWidth": 600
+}

@@ -1,0 +1,103 @@
+.trafficlight {
+    display: inline-block;
+    padding: 0 3px;
+    text-align: left;
+    -webkit-app-region: drag;
+    white-space: nowrap;
+    font-size: 0;
+
+    .trafficlight-close,
+    .trafficlight-minimize,
+    .trafficlight-fullscreen {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin: 6px 4px;
+        line-height: 0;
+        -webkit-app-region: no-drag;
+        vertical-align: middle;
+    }
+
+    .trafficlight-close {
+        border: 1px solid #e2463f;
+        background-color: #ff5f57;
+        margin-left: 6px;
+
+        &:active {
+            border-color: #ad3934;
+            background-color: #bf4943;
+        }
+
+        svg {
+            width: 6px;
+            height: 6px;
+            margin-top: 1px;
+            margin-left: 1px;
+            opacity: 0;
+        }
+    }
+
+    .trafficlight-minimize {
+        border: 1px solid #e1a116;
+        background-color: #ffbd2e;
+
+        &:active {
+            border-color: #ad7d15;
+            background-color: #bf9123;
+        }
+
+        svg {
+            width: 8px;
+            height: 8px;
+            opacity: 0;
+        }
+    }
+
+    .trafficlight-fullscreen,
+    .trafficlight-maximize {
+        border: 1px solid #12ac28;
+        background-color: #28c940;
+    }
+
+    .trafficlight-fullscreen {
+        &:active {
+            border-color: #128622;
+            background-color: #1f9a31;
+        }
+
+        svg.fullscreen-svg {
+            width: 6px;
+            height: 6px;
+            margin-top: 1px;
+            margin-left: 1px;
+            opacity: 0;
+        }
+
+        svg.maximize-svg {
+            width: 8px;
+            height: 8px;
+            opacity: 0;
+            display: none;
+        }
+    }
+
+    &:hover {
+
+        svg,
+        svg.fullscreen-svg,
+        svg.maximize-svg {
+            opacity: 1;
+        }
+    }
+
+    &.maximize {
+        svg.fullscreen-svg {
+            display: none;
+        }
+
+        svg.maximize-svg {
+            display: block;
+        }
+    }
+}

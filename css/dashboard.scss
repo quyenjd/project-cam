@@ -1,0 +1,417 @@
+@import 'components/bottomnav';
+@import 'components/component';
+@import 'components/grid';
+@import 'components/inputbox';
+@import 'components/inputgroup';
+@import 'components/radio';
+@import 'components/select';
+@import 'components/topnav';
+@import 'components/map';
+@import 'components/componentpass';
+@import 'components/category';
+@import 'components/menubar';
+@import 'components/scrollbar';
+@import 'components/spinner';
+@import 'components/tab';
+@import 'components/stickymenu';
+@import 'components/accordion';
+@import 'components/dragdrop';
+@import 'components/overlay';
+@import 'components/treelist';
+@import 'components/trafficlight';
+@import 'components/universal';
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../webfonts/4iCv6KVjbNBYlgoC1CzjvWyNL4U.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../webfonts/4iCv6KVjbNBYlgoC1CzjtGyNL4U.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../webfonts/4iCv6KVjbNBYlgoC1CzjvGyNL4U.woff2) format('woff2');
+    unicode-range: U+1F00-1FFF;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../webfonts/4iCv6KVjbNBYlgoC1Czjs2yNL4U.woff2) format('woff2');
+    unicode-range: U+0370-03FF;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../webfonts/4iCv6KVjbNBYlgoC1CzjvmyNL4U.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../webfonts/4iCv6KVjbNBYlgoC1CzjsGyN.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+html {
+    color: $-black;
+    background-color: $-background;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 15px;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+    outline: none;
+}
+
+.title {
+    display: block;
+    padding: 0;
+    margin: 5px;
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+}
+
+button {
+    border-radius: 2px;
+    border: 1px solid #444;
+    background-color: #eee;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    color: #000;
+    text-align: center;
+    overflow: hidden;
+    touch-action: manipulation;
+
+    &:focus {
+        border: 1px solid #333;
+        box-shadow: 0px 0px 1px 1px #ccc;
+    }
+
+    &[disabled] {
+        background-color: #ddd;
+        color: #666;
+        cursor: auto;
+        pointer-events: none;
+    }
+}
+
+.ui-tooltip {
+    padding: 3px 0.5%;
+    font-size: 0.75rem;
+    word-wrap: break-word;
+    margin: 1px;
+    background: #eee;
+    color: #333;
+    pointer-events: none;
+    z-index: 999999999;
+}
+
+.ui-widget-shadow {
+    box-shadow: none;
+}
+
+img {
+    position: relative;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+    z-index: 0;
+
+    &.loading::before {
+        content: '';
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.1);
+        cursor: progress;
+    }
+
+    &.loading::after {
+        content: 'Loading...';
+        display: block;
+        color: #444;
+        text-shadow: 0px 0px 1px #ccc;
+        font-size: 0.5rem;
+        width: 100%;
+        position: absolute;
+        line-height: 1rem;
+        height: 1rem;
+        left: 0;
+        text-align: center;
+        bottom: -1rem;
+        overflow: hidden;
+    }
+
+    &.square {
+        display: block;
+        width: 100%;
+        position: relative;
+        object-fit: cover;
+        margin-left: auto;
+        margin-right: auto;
+
+        &::after {
+            content: '';
+            display: block;
+            padding-bottom: 100%;
+        }
+    }
+}
+
+li.context-menu-item {
+    line-height: 1rem;
+    font-size: 0.8rem;
+}
+
+.switch .table-wrapper {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.switch .select {
+    font-size: 0.875rem;
+}
+
+pre {
+    background: rgba(#3a3a3a, 0.5);
+    color: #f2dede;
+    padding: 0.125em !important;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.jq-toast-wrap {
+    user-select: none;
+}
+
+.jq-icon-info {
+    background-color: rgba($-picassoblue, 0.75);
+    color: $-platinum;
+}
+
+.jq-icon-warning {
+    background-color: rgba($-yellow, 0.75);
+    color: $-black;
+}
+
+.autosave-form {
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    user-select: none;
+
+    input[type='checkbox'] {
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    label {
+        vertical-align: middle;
+        display: inline-block;
+    }
+}
+
+hr {
+    border: 0;
+    margin: 0.75rem 0 0.5rem;
+    padding: 0;
+    height: 1px;
+    background: #ccc;
+    box-sizing: content-box;
+}
+
+.session {
+    height: 100%;
+}
+
+.versions .table-wrapper {
+    font-size: 0.75rem;
+}
+
+img.menubar-logo {
+    height: 1.5rem;
+    width: 1.5rem;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.menubar.buttons .menubar__item[data-trigger="close"]:hover {
+    background: #f00;
+
+    svg>path {
+        fill: #fff;
+    }
+}
+
+.ui-resizable-n {
+    transition: background 0.5s cubic-bezier(1, 0, 1, 0), opacity 0.25s cubic-bezier(0, 1, 0, 1);
+    background: transparent;
+    opacity: 0;
+    height: 7px;
+
+    &:hover,
+    &:active {
+        background: $-red;
+        opacity: 1;
+    }
+}
+
+table.dataTable.no-footer {
+    border-bottom: 1px solid #ccc;
+}
+
+.ui-tooltip {
+    max-width: 90vw;
+}
+
+.chosen-select-wrapper {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+
+    select {
+        width: 100%;
+    }
+
+    .status {
+        display: block;
+        margin-top: 0.5rem;
+    }
+}
+
+.empty {
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    color: $-grey;
+    user-select: none;
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    &__content {
+        display: block;
+        z-index: 1;
+
+        .logo {
+            display: block;
+            width: 100%;
+            height: 0;
+            padding-top: 100%;
+            background-color: $-grey;
+            background-repeat: no-repeat;
+            -webkit-mask-image: url('./empty.svg');
+            mask-image: url('./empty.svg');
+        }
+
+        .text {
+            margin-top: 1rem;
+            display: block;
+            text-align: center;
+            font-size: 0.8rem;
+
+            @include responsive(small) {
+                font-size: 0.9rem;
+            }
+
+            @include responsive(medium) {
+                font-size: 1rem;
+            }
+
+            @include responsive(large) {
+                font-size: 1.1rem;
+            }
+
+            @include responsive(xlarge) {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    &__hint {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 0.5rem 1rem;
+        font-style: italic;
+        font-size: 0.8rem;
+
+        &.right {
+            left: unset;
+            right: 0;
+        }
+    }
+}
+
+.componentWrapper {
+    margin-bottom: 0 !important;
+    z-index: 0;
+
+    .component {
+        margin-bottom: 0.5rem !important;
+    }
+}
+
+.paramtype {
+    font-weight: bold;
+    font-size: 0.875em;
+}
+
+.iframe-fix {
+    webview, iframe {
+        pointer-events: none;
+    }
+}

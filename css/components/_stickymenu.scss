@@ -1,0 +1,219 @@
+@import 'universal';
+
+$placeholder-width: 1.8rem;
+$edge-width: 6px;
+
+.sticky {
+    $c: &;
+
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999990;
+    pointer-events: none;
+    user-select: none;
+
+    &__wrapper {
+        display: block;
+        width: 50%;
+        left: calc(#{$placeholder-width} - 50%);
+        transition: left 0.4s ease;
+        position: absolute;
+        height: 100%;
+
+        @include responsive(large) {
+            width: 33%;
+            left: calc(#{$placeholder-width} - 33%);
+        }
+
+        &.active {
+            left: 0;
+
+            #{$c}__edge {
+                right: calc(100% - #{$edge-width});
+            }
+
+            #{$c}__placeholder__logo::after {
+                transform: scale(-1);
+            }
+        }
+    }
+
+    &__edge {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: calc(#{$placeholder-width} - #{$edge-width});
+        width: #{$edge-width};
+        pointer-events: none;
+        background: transparent;
+        height: 100%;
+
+        &:hover {
+            background: $-red;
+        }
+    }
+
+    &__placeholder {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 20%;
+        width: #{$placeholder-width};
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        pointer-events: all;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background: #ddd;
+        padding: 1rem 0.4rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+        border: 1px solid $-disabled-darker;
+        box-shadow: 1px 0px 2px 0px $-disabled;
+        z-index: 1;
+        cursor: pointer;
+
+        &:hover {
+            background: #ccc;
+        }
+
+        &__logo {
+            display: inline-block;
+
+            &::after {
+                display: inline-block;
+                content: '\f054';
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                font-size: 0.8em;
+                transition: transform 0.4s $-cubic-caret;
+            }
+        }
+
+        &__title {
+            display: inline-block;
+            margin-top: 0.3rem;
+        }
+    }
+
+    &__menu {
+        display: block;
+        position: absolute;
+        left: 0;
+        width: calc(100% - #{$placeholder-width});
+        height: 100%;
+        pointer-events: all;
+        overflow-x: visible;
+        overflow-y: auto;
+        background-color: $-powder;
+        border: 1px solid $-disabled-darker;
+        border-left: none;
+        box-shadow: 1px 0px 5px 0px $-disabled;
+        z-index: 3;
+
+        &__wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+        }
+
+        &__tab {
+            display: inline-flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+
+            &__item {
+                display: inline-flex;
+                flex-grow: 1;
+                justify-content: center;
+                padding: 0.75rem 0.5rem;
+                cursor: pointer;
+                font-size: 0.8rem;
+                line-height: 1.25rem;
+                min-width: 0;
+                border-bottom: 1px solid #ccc;
+
+                &__title {
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                &:not(.active):hover {
+                    background: #ccc;
+                }
+
+                &.active {
+                    color: $-darkred;
+                    font-size: 0.9rem;
+                    border-bottom: 2px solid $-darkred;
+                }
+            }
+        }
+
+        &__container {
+            display: inline-flex;
+            flex-grow: 1;
+            position: relative;
+            overflow: auto;
+
+            &__item {
+                display: block;
+                position: relative;
+                width: 100%;
+            }
+        }
+    }
+
+    &.right {
+        #{$c}__wrapper {
+            left: auto;
+            right: calc(#{$placeholder-width} - 50%);
+            transition: right 0.4s ease;
+
+            @include responsive(large) {
+                width: 33%;
+                right: calc(#{$placeholder-width} - 33%);
+            }
+
+            &.active {
+                right: 0;
+            }
+        }
+
+        #{$c}__edge {
+            left: calc(#{$placeholder-width} - #{$edge-width});
+            right: auto;
+        }
+
+        #{$c}__placeholder {
+            left: 0;
+            right: auto;
+            width: #{$placeholder-width};
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: scale(-1);
+        }
+
+        #{$c}__menu {
+            left: auto;
+            right: 0;
+            border-left: 1px solid $-disabled-darker;
+            border-right: none;
+        }
+    }
+
+    &.autoshow &__edge {
+        pointer-events: all;
+    }
+}

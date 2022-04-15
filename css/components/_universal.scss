@@ -1,0 +1,85 @@
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1)+$replace+str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+@function calced($expressions...) {
+    $result: "";
+
+    @each $x in $expressions {
+        @if (str-length($result) > 0) {
+            $result: $result + ' + ';
+        }
+
+        $result: $result+str-replace(#{$x}, 'calc', '');
+    }
+
+    $result: str-replace($result, '+ -', '- ');
+    @return unquote('calc('+ $result + ')');
+}
+
+$-background: #fafafa;
+$-white: #e1eff6;
+$-black: #000;
+$-cyan: #97d2fb;
+$-blue: #83bcff;
+$-picassoblue: #0276fd;
+$-green: #80ffe8;
+$-darkgreen: #0e9d45;
+$-yellow: #feb72b;
+$-pink: #eccbd9;
+$-red: #f18088;
+$-darkred: #a20a0a;
+$-disabled: #dcdad1;
+$-disabled-lighter: #e3e1da;
+$-disabled-darker: #c6c4bc;
+$-disabled-darker2: #d3cec5;
+$-platinum: #e5e9ec;
+$-tomato: #ff6347;
+$-safety: #eed202;
+$-light-yellow: #ffdbac;
+$-border-color: #aaa;
+$-powder: #fbfbf2;
+$-grey: #969892;
+
+$small: 30em;
+$small-master: 25.875em;
+$medium: 48em;
+$medium-master: 46.25em;
+$large: 62em;
+$large-master: 60em;
+$xlarge: 75em;
+$xlarge-master: 71.25em;
+
+$-cubic-caret: cubic-bezier(0.83, 0, 0.66, 1.25);
+
+@mixin responsive($size) {
+    @if $size==small {
+        @media only screen and (min-width: #{$small}) {
+            @content;
+        }
+    }
+
+    @if $size==medium {
+        @media only screen and (min-width: #{$medium}) {
+            @content;
+        }
+    }
+
+    @if $size==large {
+        @media only screen and (min-width: #{$large}) {
+            @content;
+        }
+    }
+
+    @if $size==xlarge {
+        @media only screen and (min-width: #{$xlarge}) {
+            @content;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "type": "component",
+    "id": "project-cam-data-exporter",
+    "version": "1.1.0",
+    "name": "Data Exporter",
+    "description": "This component is for exporting data to files.",
+    "input": [
+        {
+            "limit": 1,
+            "name": "data",
+            "required": true
+        }
+    ],
+    "category": "Data Exporting",
+    "files": "dist/*",
+    "indexFile": "dist/index.html"
+}

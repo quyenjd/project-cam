@@ -1,0 +1,13 @@
+{
+    "type": "package",
+    "id": "project-cam-demo-pkg",
+    "version": "1.0.0",
+    "name": "Demo Package",
+    "description": "This package is only for demonstration.",
+    "includes": [
+        {
+            "cond": "com/project-cam-demo@>=1.0.0",
+            "ref": "component.cam.json"
+        }
+    ]
+}

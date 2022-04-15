@@ -1,0 +1,98 @@
+@import 'universal';
+
+.topnav {
+    display: block;
+    position: absolute;
+    height: 5rem;
+    width: 100%;
+    z-index: 100;
+
+    &__mirror {
+        display: block;
+        width: 100%;
+        height: 5rem;
+    }
+
+    &__wrapper {
+        padding: 2.5rem 1rem 0;
+        background-color: $-disabled;
+        height: 100%;
+        width: 100%;
+        position: relative;
+
+        @include responsive(medium) {
+            padding: 2.5rem 2rem 0;
+        }
+
+        &__tablist {
+            height: 2.5rem;
+            width: 100%;
+
+            &__item {
+                $c: &;
+
+                width: 30%;
+                display: block;
+                float: left;
+                height: 100%;
+                background: $-disabled;
+                z-index: 0;
+                position: relative;
+                border-top-left-radius: 1px;
+                border-top-right-radius: 1px;
+                transition: width 0.3s ease;
+
+                &__title {
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                    height: 100%;
+                    font-size: 1rem;
+                    font-weight: bold;
+                    line-height: 2.5rem;
+                    color: #000;
+                    position: relative;
+                    user-select: none;
+
+                    i {
+                        display: none;
+                        position: absolute;
+                        font-size: 1rem;
+                        line-height: 1rem;
+                        top: 0.5rem;
+                        right: 0.5rem;
+                        cursor: pointer;
+                        color: inherit;
+
+                        &.disabled {
+                            color: $-pink;
+                        }
+                    }
+                }
+
+                &.active {
+                    width: 70%;
+                    background: $-background;
+                    border-top: 0.25rem solid $-red;
+                    z-index: 1;
+                    box-shadow: 0px -1px 2px 0px $-platinum;
+
+                    #{$c}__title {
+                        font-size: 1.25rem;
+                        line-height: 2.25rem;
+                        color: $-red;
+
+                        i {
+                            display: block;
+                        }
+                    }
+                }
+
+                &:not(.active):hover {
+                    background: #ccc;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

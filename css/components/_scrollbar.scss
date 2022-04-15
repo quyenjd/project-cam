@@ -1,0 +1,16 @@
+@import 'universal';
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: $-platinum;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: $-disabled-lighter;
+    box-shadow: rgba($-disabled-lighter, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.25) 0px 18px 36px -18px inset;
+
+    &:hover {
+        background: $-disabled;
+    }
+}

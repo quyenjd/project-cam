@@ -1,0 +1,307 @@
+@import 'universal';
+
+.map {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    line-height: 1rem;
+    font-size: 0.75rem;
+    user-select: none;
+
+    $-grid: rgba(0, 0, 0, 0.05);
+    background-color: transparent;
+    background-image: linear-gradient(0deg, transparent 24%, $-grid 25%, $-grid 26%, transparent 27%, transparent 74%, $-grid 75%, $-grid 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, $-grid 25%, $-grid 26%, transparent 27%, transparent 74%, $-grid 75%, $-grid 76%, transparent 77%, transparent);
+    background-size: 100px 100px;
+
+    &.move {
+        cursor: crosshair;
+    }
+
+    &__panzoom {
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: relative;
+        overflow: visible;
+        background: transparent;
+        z-index: 0;
+
+        & svg {
+            display: block;
+            background: transparent;
+            pointer-events: none;
+            min-height: 3px;
+            min-width: 3px;
+
+            & line {
+                stroke: $-red;
+                stroke-width: 2px;
+                shape-rendering: crispEdges;
+                pointer-events: auto;
+                cursor: pointer;
+            }
+
+            &.hover line {
+                stroke: $-tomato;
+                stroke-width: 3px;
+            }
+
+            &.moving {
+                z-index: 1000000000;
+
+                & line {
+                    stroke: $-picassoblue;
+                    pointer-events: none;
+                }
+            }
+
+            &.selected line {
+                stroke: $-darkred;
+            }
+        }
+    }
+
+    &__component {
+        display: block;
+        width: 12rem;
+        padding: 0.5rem 0.375rem;
+        border: 1px solid $-disabled;
+        border-radius: 5px;
+        position: absolute;
+        overflow: hidden;
+        float: left;
+        box-shadow: 0px 1px 5px rgba($-disabled, 0.5);
+        background: $-white;
+        cursor: move;
+
+        &.primary::after {
+            content: 'P';
+            font-size: 0.5rem;
+            line-height: 0.5rem;
+            display: block;
+            position: absolute;
+            top: 0.5rem;
+            left: 0.375rem;
+            padding: 0.125rem;
+            background: rgba($-yellow, 0.5);
+            color: #222;
+        }
+
+        &__title {
+            height: 1rem;
+            text-align: center;
+            width: 100%;
+            display: block;
+            margin-bottom: 0.125rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        &.processing {
+            background: $-yellow;
+        }
+
+        &__body {
+            display: block;
+            width: 100%;
+            position: relative;
+            border: 2px solid $-platinum;
+            overflow: hidden;
+            min-width: 4rem;
+
+            &__input,
+            &__output {
+                width: 50%;
+                float: left;
+                display: block;
+                height: 100%;
+
+                &__header {
+                    display: block;
+                    width: 100%;
+                    font-weight: bold;
+                    text-align: center;
+                    padding: 0.25rem;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                &__item {
+                    display: block;
+                    width: 100%;
+                    padding: 0.5rem;
+                    position: relative;
+                    cursor: pointer;
+
+                    &__param {
+                        display: block;
+                        width: 100%;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+
+                    &__connector {
+                        position: absolute;
+                        height: 0.5rem;
+                        width: 0.5rem;
+                        border-radius: 100%;
+                        background: $-platinum;
+                        border: 1px solid $-black;
+                        top: 0.75rem;
+                        display: block;
+                        pointer-events: none;
+
+                        &.chosen {
+                            background: $-red;
+                        }
+
+                        &.active {
+                            background: $-picassoblue;
+                        }
+
+                        &.hover {
+                            background: $-tomato;
+                        }
+
+                        &.selected {
+                            background: $-darkred;
+                        }
+
+                        &:hover {
+                            box-shadow: 0px 0px 3px 1px $-disabled;
+                        }
+                    }
+
+                    &:hover {
+                        background: rgba(#fff, 0.25);
+                    }
+
+                    &:not(:first-child) {
+                        border-top: 1px solid $-platinum;
+                    }
+
+                    &.none {
+                        pointer-events: none;
+                    }
+                }
+            }
+
+            &__input {
+                $c: &;
+                padding-left: 1px;
+
+                &__header {
+                    border-right: 1px solid $-platinum;
+                }
+
+                &__item {
+                    border-right: 1px solid $-platinum;
+                    padding-left: 1rem;
+
+                    &__param {
+                        text-align: left;
+                    }
+
+                    &__connector {
+                        left: 0.25rem;
+                    }
+
+                    &:hover {
+                        box-shadow: -1px 1px 1px 1px rgba(#fff, 0.25);
+                    }
+                }
+
+                &.minimized {
+                    pointer-events: none;
+                    display: none;
+                }
+            }
+
+            &__output {
+                $c: &;
+
+                &__header {
+                    border-left: 1px solid $-platinum;
+                    left: -1px;
+                }
+
+                &__item {
+                    border-left: 1px solid $-platinum;
+                    padding-right: 1rem;
+                    left: -1px;
+
+                    &__param {
+                        text-align: right;
+                    }
+
+                    &__connector {
+                        right: 0.25rem;
+                    }
+
+                    &:hover {
+                        box-shadow: 1px 1px 1px 1px rgba(#fff, 0.25);
+                    }
+                }
+
+                &.minimized {
+                    pointer-events: none;
+                    display: none;
+                }
+            }
+
+            &::after {
+                content: '';
+                clear: both;
+                display: table;
+            }
+        }
+
+        &.selected::after {
+            content: '';
+            display: block;
+            position: absolute;
+            background: transparent;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            border: 2px dashed $-darkred;
+            border-radius: 5px;
+            pointer-events: none;
+        }
+    }
+
+    &__selection {
+        border: 2px solid $-picassoblue;
+        background: rgba($-pink, 0.25);
+        border-radius: 1px;
+    }
+
+    &:active,
+    &:focus {
+        outline: none;
+    }
+
+    &__coordinates {
+        display: block;
+        position: absolute;
+        border-top: 1px solid $-platinum;
+        bottom: 0;
+        right: 0;
+        font-size: 0.8rem;
+        pointer-events: none;
+        z-index: 1;
+        background: #fff;
+        white-space: nowrap;
+
+        &__item {
+            padding: 0.2rem 0.4rem;
+            display: inline-block;
+            border-left: 1px solid $-platinum;
+            white-space: nowrap;
+        }
+    }
+}

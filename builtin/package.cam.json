@@ -1,0 +1,33 @@
+{
+    "type": "package",
+    "id": "project-cam-built-ins",
+    "version": "1.3.0",
+    "name": "Project CAM Built-ins",
+    "description": "This package contains all the built-in components of the Project CAM.",
+    "includes": [
+        {
+            "cond": "com/project-cam-data-loader@>=1.3.0",
+            "ref": "project-cam-data-loader/component.cam.json"
+        },
+		{
+            "cond": "com/project-cam-data-plotting@>=1.2.0",
+            "ref": "project-cam-data-plotting/component.cam.json"
+        },
+        {
+            "cond": "com/project-cam-data-exporter@>=1.1.0",
+            "ref": "project-cam-data-exporter/component.cam.json"
+        },
+		{
+			"cond": "com/project-cam-data-processor@>=1.0.0",
+			"ref": "project-cam-data-processor/component.cam.json"
+		},
+        {
+			"cond": "com/project-cam-port-in@>=1.0.0",
+			"ref": "project-cam-port-in/component.cam.json"
+		},
+        {
+			"cond": "com/project-cam-port-out@>=1.0.0",
+			"ref": "project-cam-port-out/component.cam.json"
+		}
+    ]
+}

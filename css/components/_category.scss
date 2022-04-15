@@ -1,0 +1,43 @@
+.category {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+
+    &__title {
+        display: table;
+        position: relative;
+        padding-left: 1rem;
+        cursor: pointer;
+
+        &__icon {
+            display: block;
+            position: absolute;
+            font-size: 0.8rem;
+            line-height: 1rem;
+            top: 0;
+            left: 0;
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            transition: transform 0.2s $-cubic-caret;
+
+            &::after {
+                content: '\f0d8';
+            }
+        }
+
+        &__name {
+            display: block;
+            text-decoration: none;
+            line-height: 1rem;
+            font-size: 0.8rem;
+        }
+
+        &:hover &__name {
+            text-decoration: underline;
+        }
+    }
+
+    &.active &__title__icon {
+        transform: rotate(-180deg);
+    }
+}

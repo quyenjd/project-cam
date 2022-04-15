@@ -1,0 +1,15 @@
+{
+    "type": "component",
+    "id": "project-cam-demo",
+    "version": "1.0.0",
+    "name": "Demo Component",
+    "description": "This component is only for demonstration.",
+    "output": [
+        {
+            "name": "sum"
+        }
+    ],
+    "category": "Demo",
+    "files": "*",
+    "indexFile": "index.html"
+}

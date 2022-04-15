@@ -1,0 +1,24 @@
+{
+  "type": "component",
+  "id": "project-cam-port-out",
+  "version": "1.0.0",
+  "name": "Port Out",
+  "description": "This component is for pushing data to a given port",
+  "defaultHeight": 200,
+  "defaultWidth": 200,
+  "input": [
+    {
+      "name": "_",
+      "required": true,
+      "limit": 1
+    }
+  ],
+  "output": [],
+  "category": "Ports",
+  "minimized": false,
+  "files": [
+    "dist/*"
+  ],
+  "indexFile": "dist/index.html",
+  "compatibleUntil": "0.0.0"
+}

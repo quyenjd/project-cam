@@ -1,0 +1,473 @@
+@import 'universal';
+
+.component {
+    $c: &;
+
+    display: block;
+    width: 100%;
+    position: relative;
+    box-shadow: 0px 0px 5px 1px $-white;
+    border-radius: 5px;
+    background: $-background;
+    user-select: none;
+
+    &.primary {
+        #{$c}__body {
+            padding: 0.25rem 0.5rem 1rem;
+        }
+
+        &::after {
+            content: 'Primary';
+            font-size: 0.5rem;
+            line-height: 0.5rem;
+            display: block;
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            padding: 0.125rem;
+            background: rgba($-yellow, 0.5);
+            color: #222;
+            z-index: 1;
+        }
+    }
+
+    &__header {
+        display: block;
+        width: 100%;
+        height: 1.6rem;
+        padding: 0.25rem 0.5rem;
+        background: $-cyan;
+        box-shadow: 0px 1px 2px #ccc;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        cursor: grab;
+
+        &__modes {
+            display: block;
+            position: absolute;
+            top: 0.25rem;
+            left: 0.5rem;
+            z-index: 2;
+            white-space: nowrap;
+            height: 1.1rem;
+
+            &.right {
+                left: auto;
+                right: 0.5rem;
+            }
+
+            &__toggler {
+                text-align: center;
+                line-height: 1.1rem;
+                width: 1.1rem;
+                height: 1.1rem;
+                border-radius: 50%;
+                cursor: pointer;
+                float: left;
+
+                &:hover,
+                &.focus {
+                    box-shadow: 0px 0px 5px 2px $-blue;
+                }
+
+                &.onoff {
+                    color: $-black;
+                    background: $-green;
+
+                    #{$c}.disabled & {
+                        color: $-white;
+                        background: $-red;
+                    }
+                }
+
+                &.minimize {
+                    color: $-black;
+                    background: $-white;
+                    font-size: 0.5rem;
+                }
+
+                &.menu {
+                    background: $-white;
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        top: 0.4rem;
+                        right: 0.15rem;
+                        border: 0.38rem solid transparent;
+                        border-top: 0.36rem solid #444;
+                        border-bottom: none;
+                        transition: 0.2s $-cubic-caret transform, 0.2s ease top;
+                    }
+
+                    &.active::after {
+                        transform: rotate(180deg);
+                        top: 0.3rem;
+                    }
+                }
+
+                &:not(:first-child) {
+                    margin-left: 0.125rem;
+                }
+            }
+        }
+
+        &__title {
+            display: block;
+            text-align: center;
+            word-break: break-all;
+            line-height: 1.1rem;
+            height: 1.1rem;
+            width: 100%;
+            font-weight: bold;
+            z-index: 0;
+            overflow: hidden;
+            position: relative;
+            pointer-events: none;
+        }
+
+        &__menu {
+            display: block;
+            position: absolute;
+            top: 1.6rem;
+            right: 0;
+            background: $-white;
+            color: $-black;
+            box-shadow: none;
+            z-index: 200;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s linear, box-shadow 0.3s ease;
+            font-size: 0.9rem;
+
+            &.active {
+                box-shadow: -1px 1px 2px 1px #ddd;
+                max-height: 10rem;
+            }
+
+            &__item {
+                padding: 0.25rem 0.5rem;
+                height: 1.5rem;
+                line-height: 1rem;
+                width: 100%;
+                cursor: pointer;
+                position: relative;
+
+                & span {
+                    height: 0 !important;
+                    width: 0 !important;
+                    overflow: hidden;
+                    position: absolute;
+                    top: 0;
+                    z-index: -1;
+                    display: block;
+                }
+
+                &:hover,
+                &:focus {
+                    background: $-platinum;
+                }
+
+                &.delete {
+                    background: $-darkred;
+                    color: $-white;
+
+                    &:hover,
+                    &:focus {
+                        background: $-red;
+                        color: $-black;
+                    }
+                }
+            }
+        }
+
+        &__overlay {
+            display: block;
+            position: absolute;
+            top: 1.6rem;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            line-height: 0.75rem;
+            font-size: 0.75rem;
+            box-shadow: 0px 1px 2px #ccc;
+            overflow: hidden;
+
+            &__text {
+                width: 100%;
+                text-align: center;
+                padding: 0.5rem;
+                background: #eee;
+                color: #333;
+            }
+        }
+    }
+
+    &__body {
+        display: block;
+        position: relative;
+        width: 100%;
+        padding: 0.25rem 0.5rem;
+
+        #{$c}.disabled &::after,
+        #{$c}[disabled] &::after {
+            content: '';
+            z-index: 5;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            cursor: not-allowed;
+            background: $-disabled;
+            opacity: 0.5;
+            display: block;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            user-select: none;
+        }
+    }
+
+    &-minimized {
+        display: block;
+        width: 100%;
+        position: relative;
+        border-radius: 5px;
+        z-index: 0;
+        background: $-cyan;
+        padding: 0.45rem 0.75rem;
+        height: 2rem;
+
+        &:hover {
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px 0px;
+        }
+
+        &__modes {
+            display: block;
+            position: absolute;
+            top: 0.5rem;
+            left: 0.75rem;
+            z-index: 2;
+            white-space: nowrap;
+            height: 1.1rem;
+
+            &__toggler {
+                text-align: center;
+                line-height: 1.1rem;
+                width: 1.1rem;
+                height: 1.1rem;
+                border-radius: 50%;
+                cursor: pointer;
+                float: left;
+
+                &:hover,
+                &.focus {
+                    box-shadow: 0px 0px 5px 2px $-blue;
+                }
+
+                &.maximize {
+                    font-size: 1rem;
+                    color: $-black;
+                    background: $-white;
+                }
+
+                &:not(:first-child) {
+                    margin-left: 0.125rem;
+                }
+            }
+        }
+
+        &__title {
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            word-break: break-all;
+            line-height: 1rem;
+            height: 1rem;
+            font-size: 0.75rem;
+            z-index: 0;
+            overflow: hidden;
+        }
+    }
+
+    &__hub {
+        $c: &;
+
+        display: block;
+        width: 100%;
+        position: relative;
+        padding: 0.5rem;
+        border-bottom: 1px solid #ccc;
+        font-size: 0.75rem;
+        overflow: hidden;
+        min-height: 2rem;
+        background: $-background;
+
+        &__status {
+            display: block;
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            z-index: 1;
+            line-height: 1rem;
+            cursor: pointer;
+
+            &:before {
+                content: '';
+                display: inline-block;
+                height: 0.5rem;
+                width: 0.5rem;
+                border-radius: 50%;
+                background-color: $-disabled;
+                margin-right: 0.25rem;
+            }
+
+            &:after {
+                color: $-disabled;
+                content: 'Unknown';
+                display: inline-block;
+                font-weight: bold;
+            }
+
+            #{$c}.connected &:before {
+                background-color: $-darkgreen;
+            }
+
+            #{$c}.connected &:after {
+                color: $-darkgreen;
+                content: 'Connected';
+            }
+
+            #{$c}.idle &:before {
+                background-color: $-yellow;
+            }
+
+            #{$c}.idle &:after {
+                color: $-yellow;
+                content: 'Idle';
+            }
+
+            #{$c}.error &:before {
+                background-color: $-darkred;
+            }
+
+            #{$c}.error &:after {
+                color: $-darkred;
+                content: 'Error';
+            }
+
+            #{$c}.processing &:before {
+                background-color: $-picassoblue;
+            }
+        
+            #{$c}.processing &:after {
+                color: $-picassoblue;
+                content: 'Processing';
+            }
+        }
+
+        &__toggler {
+            display: block;
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            z-index: 1;
+            line-height: 1rem;
+        }
+
+        &__traffic {
+            display: block;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 1.5rem;
+            padding: 0.5rem;
+            background-color: $-platinum;
+            border-radius: 5px;
+
+            &__message {
+                display: block;
+                margin-bottom: 0.5rem;
+
+                &:before {
+                    content: 'Message:';
+                    display: inline-block;
+                    font-weight: bold;
+                    margin-right: 0.5rem;
+                }
+            }
+
+            &__itembox {
+                display: block;
+                width: 100%;
+                text-align: center;
+                line-height: 1rem;
+
+                & em.required {
+                    color: $-darkred;
+                }
+
+                &__item {
+                    display: block;
+                    width: 100%;
+                    white-space: nowrap;
+
+                    &__param {
+                        display: inline-block;
+                        font-weight: bold;
+                        color: $-black;
+                        margin: 0 0.25rem;
+                        font-size: 0.75em;
+                    }
+
+                    &__name {
+                        display: inline-block;
+                        font-weight: normal;
+                        color: $-darkgreen;
+                        margin: 0 0.25rem;
+                    }
+                }
+            }
+
+            &__table {
+                overflow: auto;
+
+                &::-webkit-scrollbar {
+                    height: 2px;
+                    width: 2px;
+                }
+            }
+        }
+    }
+}
+
+.componentWrapper.focus,
+.minComponentWrapper.focus {
+    position: relative;
+
+    &::after {
+        content: '';
+        animation-duration: 5s;
+        animation-name: selected;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 100;
+        display: block;
+    }
+}
+
+@keyframes selected {
+    from {
+        background: rgba($-safety, 0.6);
+    }
+
+    to {
+        background: initial;
+    }
+}

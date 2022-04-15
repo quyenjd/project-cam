@@ -1,0 +1,56 @@
+.componentpass {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+
+    &__text {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+
+        & span.counter {
+            color: $-darkred;
+        }
+    }
+
+    &__item {
+        width: 100%;
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 0.875rem;
+
+        &.head {
+            font-weight: bold;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        &::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        &__col {
+            display: block;
+            float: left;
+            width: 50%;
+            
+            &.left {
+                text-align: right;
+                padding-right: 1rem;
+            }
+
+            &.right {
+                text-align: left;
+                padding-left: 1rem;
+            }
+
+            &.error {
+                color: $-darkred;
+                font-weight: bold;
+            }
+        }
+    }
+}

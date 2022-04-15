@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0.5em;
+        }
+
+        .block {
+            display: block;
+            width: 100%;
+            margin-bottom: 0.5em;
+        }
+
+        .status {
+            opacity: 0.8;
+            font-size: 0.875em;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block">
+        <div class="block">
+            <label>Graph:</label>
+            <select id="select" disabled>
+                <option value="straightline" selected>Straight Line</option>
+                <option value="curveline">Curve Line</option>
+                <option value="stepline">Step Line</option>
+                <option value="column">Column</option>
+            </select>
+        </div>
+        <hr>
+        <div class="block" id="graph">No data.</div>
+        <hr>
+        <div id="export" class="block" style="display: none;">
+            <label>File type:</label>
+            <select>
+                <option value="png1" selected>PNG (100%)</option>
+                <option value="png2">PNG (200%)</option>
+                <option value="png3">PNG (300%)</option>
+                <option value="png4">PNG (400%)</option>
+                <option value="png5">PNG (500%)</option>
+                <option value="csv">CSV</option>
+            </select>
+            <button type="button" onclick="window.export(); return false;">Export</button>
+        </div>
+        <div class="block status">
+            This component accepts CSV-like string as its input and will not raise any error in case of invalid
+            data.<br>
+            The first column (of the first input) is used as the x-axis. In the case of multiple occurrences, the first
+            occurrence will be used.<br>
+            Other columns are used as <strong>numbers</strong> on the y-axis. Multiple data inputs will be merged
+            together if they share <strong>the same first row</strong> (header) as the first input.
+        </div>
+    </div>
+</body>
+
+</html>

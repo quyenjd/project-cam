@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="EN">
+
+<head>
+    <meta charset="utf-8">
+    <title>Project CAM</title>
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta name="theme-color" content="#fafafa">
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        * {
+            box-sizing: border-box !important;
+        }
+
+        body {
+            background-color: #fafafa;
+            overflow: hidden;
+            user-select: none;
+            border: 1px solid #ccc;
+            margin: 0;
+            display: flex;
+        }
+
+        .container {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            align-self: center;
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            display: block;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            opacity: 0.5;
+            background: url('orange.png') right no-repeat;
+            background-size: contain;
+            margin-right: 16px;
+        }
+
+        .header {
+            display: block;
+            width: 100%;
+            height: 32px;
+            -webkit-app-region: drag;
+        }
+
+        .header>img {
+            display: inline-block;
+            height: 32px;
+            width: 32px;
+            border: none;
+            margin: 0;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .header>span {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 32px;
+            vertical-align: middle;
+        }
+
+        .text {
+            display: block;
+            width: 100%;
+            font-size: 36px;
+            letter-spacing: 1px;
+            font-weight: lighter;
+            margin-left: 40px;
+            color: #4589f9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="icon.png">
+            <span>
+                Project
+                <span style="color: #34a851;">C</span><span style="color: #f9bb11;">A</span><span
+                    style="color: #eb4534;">M</span>
+            </span>
+        </div>
+        <div class="text">
+            <span id="message">Starting</span>
+            <span id="threedots"></span>
+        </div>
+    </div>
+
+    <script>
+        var message = document.getElementById('message');
+        message.textContent = new URLSearchParams(location.search).get('message') || 'Starting';
+
+        var threedots = document.getElementById('threedots');
+        (function f() {
+            switch (threedots.textContent) {
+                case '.':
+                    threedots.textContent = '..';
+                    break;
+                case '..':
+                    threedots.textContent = '...';
+                    break;
+                default:
+                    threedots.textContent = '.';
+            }
+            setTimeout(f, 400);
+        })();
+    </script>
+</body>
+
+</html>

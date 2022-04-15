@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0.5em;
+    }
+
+    .block {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.5em;
+    }
+
+    .status {
+      opacity: 0.8;
+      font-size: 0.875em;
+      font-style: italic;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="block">
+    <span>Port:</span>
+    <input type="number" value="2201" id="port" disabled>
+    <button id="bind" type="submit" disabled onclick="window.bindPort(); return false;">Preparing</button>
+  </div>
+  <hr>
+  <p class="status">Message: <span id="status">Unbound.</span></p>
+</body>
+
+</html>

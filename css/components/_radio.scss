@@ -1,0 +1,37 @@
+@import 'universal';
+
+.radio {
+    display: block;
+    width: 100%;
+    user-select: none;
+
+    &__option {
+        display: block;
+        width: 100%;
+        color: #000;
+        padding: 0.25em;
+        border-radius: 2px;
+        height: 1.5em;
+        line-height: 1em;
+        font-size: 1em;
+        text-align: center;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        font-weight: normal;
+        box-shadow: none;
+        overflow: hidden;
+
+        &:hover,
+        &:focus {
+            box-shadow: 0 0 3px 1px $-disabled;
+            border: 2px solid #ccc;
+        }
+
+        &[selected] {
+            font-weight: bold;
+            background-color: $-white;
+            box-shadow: 0px 0px 2px 1px #ddd;
+            border: 2px solid #ccc;
+        }
+    }
+}

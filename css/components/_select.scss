@@ -1,0 +1,121 @@
+@import 'universal';
+
+.select {
+    $c: &;
+
+    height: 2em;
+    margin: 0.25em 0;
+    position: relative;
+    user-select: none;
+    color: #000;
+    overflow: visible;
+
+    &__checkbox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 3;
+
+        &:checked {
+            z-index: 999;
+    
+            &~#{$c}__selectbox {
+                border: 1px solid #999;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 0 3px 1px #d3e3fc;
+                z-index: 998;
+
+                &__chevron {
+                    transform: rotate(180deg);
+                }
+            }
+    
+            &~#{$c}__optionbox {
+                display: block;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            }
+        }
+    }
+
+    &__selectbox {
+        display: block;
+        height: 100%;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        padding: 0.25em 0.5em;
+        background: #fff;
+        position: relative;
+
+        &__selected {
+            white-space: nowrap;
+            clear: both;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: calc(100% - .82em);
+            line-height: 1.5em;
+        }
+
+        &__chevron {
+            position: absolute;
+            top: 0.75em;
+            right: 0.5em;
+            border: 0.42em solid transparent;
+            border-top: 0.4em solid #aaa;
+            border-bottom: none;
+            transition: 0.2s cubic-bezier(0.83, 0, 0.66, 1.25) transform;
+        }
+    }
+
+    &__optionbox {
+        display: none;
+        width: 100%;
+        max-height: 10em;
+        overflow-x: none;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        background: #fff;
+        z-index: 999;
+        position: relative;
+        padding: 0;
+        margin: 0;
+        margin-top: 2px;
+
+        &__option {
+            display: block;
+            width: 100%;
+            min-height: 2em;
+            line-height: 1.25em;
+            padding: 0.375em 0.5em;
+            cursor: pointer;
+
+            &:not(:first-child) {
+                border-top: 1px solid #ddd;
+                margin-top: -0.5px;
+            }
+
+            &[disabled] {
+                cursor: not-allowed;
+                background-color: #eee;
+                color: #555;
+            }
+
+            &[selected]:not([disabled]) {
+                background-color: $-platinum;
+            }
+
+            &:not([disabled]):hover,
+            &:not([disabled]):focus {
+                color: #000 !important;
+                background-color: $-white;
+            }
+        }
+    }
+}

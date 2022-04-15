@@ -1,0 +1,1 @@
+(function () { let e = 0; for (let t = 1; t <= 1e3; ++t)e += t; return e })();

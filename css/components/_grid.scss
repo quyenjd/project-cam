@@ -1,0 +1,191 @@
+@use 'sass:math';
+
+$spacing: (25, 50, 100, 150, 200, 250, 300);
+$max-col-width: 98%;
+
+@mixin render_row() {
+    display: block;
+    width: 100%;
+    position: relative;
+
+    & [class*='g-col'] {
+        float: left;
+        display: block;
+        margin: 0.5rem math.div(100% - $max-col-width, 2);
+        min-height: 0.125rem;
+        width: $max-col-width;
+    }
+}
+
+@mixin render_col($size) {
+    @for $i from 1 to 13 {
+        > .g-col-#{$size}#{$i} {
+            width: math.div($max-col-width*$i, 12) - math.div((100% - $max-col-width)*(12 - $i), 12);
+        }
+    }
+}
+
+@mixin render_spacing($pre, $css) {
+    #{$pre}-0 {
+        #{$css}: 0rem !important;
+    }
+    #{$pre}h-0 {
+        #{$css}-left: 0rem !important;
+        #{$css}-right: 0rem !important;
+    }
+    #{$pre}v-0 {
+        #{$css}-top: 0rem !important;
+        #{$css}-bottom: 0rem !important;
+    }
+    #{$pre}t-0 {
+        #{$css}-top: 0rem !important;
+    }
+    #{$pre}r-0 {
+        #{$css}-right: 0rem !important;
+    }
+    #{$pre}b-0 {
+        #{$css}-bottom: 0rem !important;
+    }
+    #{$pre}l-0 {
+        #{$css}-left: 0rem !important;
+    }
+
+    @each $spacer in $spacing {
+        #{$pre}-#{$spacer} {
+            #{$css}: #{math.div($spacer, 100)}rem !important;
+        }
+        #{$pre}h-#{$spacer} {
+            #{$css}-left: #{math.div($spacer, 100)}rem !important;
+            #{$css}-right: #{math.div($spacer, 100)}rem !important;
+        }
+        #{$pre}v-#{$spacer} {
+            #{$css}-top: #{math.div($spacer, 100)}rem !important;
+            #{$css}-bottom: #{math.div($spacer, 100)}rem !important;
+        }
+        #{$pre}t-#{$spacer} {
+            #{$css}-top: #{math.div($spacer, 100)}rem !important;
+        }
+        #{$pre}r-#{$spacer} {
+            #{$css}-right: #{math.div($spacer, 100)}rem !important;
+        }
+        #{$pre}b-#{$spacer} {
+            #{$css}-bottom: #{math.div($spacer, 100)}rem !important;
+        }
+        #{$pre}l-#{$spacer} {
+            #{$css}-left: #{math.div($spacer, 100)}rem !important;
+        }
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.g-container, .g-container-span {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.g-row {
+    @include render_row();
+    @include render_col(null);
+
+    &-upto-sm {
+        max-width: #{$small};
+        @include render_row();
+        @include render_col(null);
+    }
+
+    &-upto-md {
+        max-width: #{$medium};
+        @include render_row();
+        @include render_col(null);
+    }
+
+    &-upto-lg {
+        max-width: #{$large};
+        @include render_row();
+        @include render_col(null);
+    }
+
+    &-upto-xl {
+        max-width: #{$xlarge};
+        @include render_row();
+        @include render_col(null);
+    }
+}
+
+[class*='g-row']::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+@include responsive(small) {
+    .g-container {
+        max-width: #{$small-master};
+    }
+
+    .g-row {
+        @include render_col(sm-);
+
+        &-upto-md {
+            @include render_col(sm-);
+        }
+
+        &-upto-lg {
+            @include render_col(sm-);
+        }
+
+        &-upto-xl {
+            @include render_col(sm-);
+        }
+    }
+}
+
+@include responsive(medium) {
+    .g-container {
+        max-width: #{$medium-master};
+    }
+
+    .g-row {
+        @include render_col(md-);
+
+        &-upto-lg {
+            @include render_col(md-);
+        }
+
+        &-upto-xl {
+            @include render_col(md-);
+        }
+    }
+}
+
+@include responsive(large) {
+    .g-container {
+        max-width: #{$large-master};
+    }
+
+    .g-row {
+        @include render_col(lg-);
+
+        &-upto-xl {
+            @include render_col(lg-);
+        }
+    }
+}
+
+@include responsive(xlarge) {
+    .g-container {
+        max-width: #{$xlarge-master};
+    }
+
+    .g-row {
+        @include render_col(xl-);
+    }
+}
+
+@include render_spacing('.m', 'margin');
+@include render_spacing('.p', 'padding');

@@ -1,0 +1,28 @@
+{
+  "name": "@project-cam/prepare",
+  "version": "1.0.0",
+  "description": "A CLI tool to help with preparing/initialzing CAM's component and package projects",
+  "main": "src/index.js",
+  "bin": {
+    "prepare": "./src/index.js"
+  },
+  "files": [
+    "src"
+  ],
+  "type": "module",
+  "keywords": [
+    "cli",
+    "prepare"
+  ],
+  "author": "quyenjd",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "clear": "^0.1.0",
+    "commander": "^8.3.0",
+    "enquirer": "^2.3.6",
+    "fs-extra": "^10.0.0",
+    "ora": "^6.0.1",
+    "semver": "^7.3.5"
+  }
+}

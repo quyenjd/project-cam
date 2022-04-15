@@ -1,0 +1,112 @@
+@import 'universal';
+
+.tab {
+    $c: &;
+
+    display: block;
+    height: 1.5rem;
+    user-select: none;
+    background: $-light-yellow;
+    overflow: hidden;
+    position: relative;
+
+    &__scroller {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0.25rem 0.5rem;
+        background: rgba($-platinum, 0.75);
+
+        &.left {
+            left: 0;
+
+            &::after {
+                content: '\f0d9';
+            }
+        }
+
+        &.right {
+            right: 0;
+
+            &::after {
+                content: '\f0da';
+            }
+        }
+
+        &:hover {
+            background: rgba($-platinum, 0.9);
+        }
+    }
+
+    &__list {
+        font-size: 0;
+        vertical-align: bottom;
+        white-space: nowrap;
+        overflow-y: hidden;
+
+        &__item {
+            font-size: 0.8rem;
+            line-height: 1rem;
+            display: inline-block;
+            background: $-light-yellow;
+            padding: 0.25rem 1.5rem 0.25rem 0.75rem;
+            position: relative;
+            transition: padding 0.3s ease;
+
+            &__close {
+                display: block;
+                position: absolute;
+                top: 0.25rem;
+                bottom: 0.25rem;
+                right: 0.5rem;
+                font-size: 1rem;
+                cursor: pointer;
+
+                &:hover {
+                    color: #444;
+                }
+            }
+
+            &:not(:first-child) {
+                border-left: 1px solid $-safety;
+            }
+
+            &:not(.active) {
+                cursor: pointer;
+
+                &:hover::after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    pointer-events: none;
+                    background: rgba($-black, 0.05);
+                }
+            }
+
+            &.active {
+                font-weight: bold;
+                background: $-background;
+            }
+        }
+    }
+
+    &.no-close {
+        #{$c}__list__item {
+            padding-right: 0.75rem;
+
+            &__close {
+                display: none;
+            }
+        }
+    }
+}

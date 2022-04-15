@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0.5em;
+        }
+
+        .block {
+            display: block;
+            width: 100%;
+            margin-bottom: 0.5em;
+        }
+
+        .status {
+            opacity: 0.8;
+            font-size: 0.875em;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block">
+        <p>This will load the content from the selected source.</p>
+        <div class="block">
+            <label>Source:</label>
+            <select id="source" disabled>
+                <option value="url" selected>URL</option>
+                <option value="local">Local</option>
+            </select>
+        </div>
+        <hr>
+        <div id="url" class="block">
+            <input type="text" class="block" placeholder="URL to the file...">
+            <button type="button" onclick="window.fromURL(); return false;" disabled>Load</button>
+        </div>
+        <div id="local" class="block" style="display: none;">
+            <button type="button" onclick="window.fromLocal(); return false;" disabled>Browse</button>
+        </div>
+        <hr>
+        <div class="block status">No message.</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+@import 'universal';
+
+.bottomnav {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0 !important;
+    width: 100%;
+    user-select: none;
+    z-index: 99;
+    overflow: hidden;
+
+    &__wrapper {
+        display: block;
+        width: 100%;
+        border-top: 2px solid $-disabled-darker2;
+
+        &__header {
+            height: 1.4rem;
+            line-height: 1rem;
+            font-size: 0.8rem;
+            padding: 0.2rem 0;
+            background: $-disabled;
+            width: 100%;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 10;
+
+            &__title {
+                display: block;
+                width: 100%;
+                text-align: center;
+                color: #000;
+            }
+        }
+
+        &__body {
+            display: block;
+            width: 100%;
+            height: calc(100% - 1.4rem);
+            margin-top: 1.4rem;
+            padding: 0.25rem 0;
+            background: #eee;
+            overflow: auto;
+
+            &__component {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+
+    &__mirror {
+        display: block;
+        float: left;
+        clear: both;
+        width: 100%;
+    }
+}

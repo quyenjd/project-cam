@@ -1,0 +1,18 @@
+{
+    "type": "component",
+    "id": "project-cam-data-plotting",
+    "version": "1.2.0",
+    "name": "Data Plotting",
+    "description": "This component is for visualizing CSV-like data.",
+    "input": [
+        {
+            "name": "data",
+            "required": true
+        }
+    ],
+    "category": "Data Visualization",
+    "files": "dist/*",
+    "indexFile": "dist/index.html",
+    "defaultHeight": 400,
+    "defaultWidth": 400
+}

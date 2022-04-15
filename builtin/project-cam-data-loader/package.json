@@ -1,0 +1,18 @@
+{
+  "name": "project-cam-data-loader",
+  "version": "1.2.0",
+  "description": "A component that loads data from files and external links",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js"
+  },
+  "devDependencies": {
+    "@project-cam/helper": "file:../../app/header/helper",
+    "cross-env": "^7.0.3",
+    "html-inline-script-webpack-plugin": "^2.0.2",
+    "html-webpack-plugin": "^5.3.2",
+    "terser-webpack-plugin": "^5.2.4",
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0"
+  }
+}

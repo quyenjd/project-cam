@@ -1,0 +1,37 @@
+{
+  "name": "@project-cam/helper",
+  "version": "1.2.0",
+  "description": "Helper tool to develop components for project-cam",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build:clean": "rimraf dist",
+    "build:start": "cross-env NODE_ENV=production rollup -c",
+    "build:typing": "tsc",
+    "build:pack:clean": "rimraf ../../../prepare/helper.tar.gz",
+    "build:pack:start": "npm-pack-all --output ../../../prepare/helper.tar.gz",
+    "build": "npm-run-all -s build:clean build:start build:typing build:pack:clean build:pack:start"
+  },
+  "author": "Quyen Dinh",
+  "license": "UNLICENSED",
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "cross-env": "^7.0.3",
+    "npm-pack-all": "^1.12.7",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.56.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "builtin-modules": "^3.2.0"
+  }
+}

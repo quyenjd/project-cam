@@ -1,0 +1,158 @@
+{
+  "name": "project-cam",
+  "license": "UNLICENSED",
+  "version": "1.0.0",
+  "author": "Quyen Dinh",
+  "description": "A data-flow component-based automation/visualization tool that scales",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron-forge start -- --mode=dev",
+    "start:prod": "electron-forge start -- --mode=prod",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "make:all": "npm-run-all -s lint build:prod submodules:build:prod make",
+    "build:scss": "sass --no-source-map css/dashboard.scss dist/css/dashboard.css",
+    "build:scss:prod": "sass --no-source-map --style=compressed css/dashboard.scss dist/css/dashboard.css",
+    "build:js": "webpack --config webpack.config.js",
+    "build:optimize": "node optimize.js",
+    "build": "cross-env NODE_ENV=development npm-run-all -s build:scss build:js",
+    "build:prod": "cross-env NODE_ENV=production npm-run-all -s build:scss:prod build:js build:optimize",
+    "submodules:build": "node build.js",
+    "submodules:build:prod": "node build.js --production",
+    "lint": "semistandard \"*.js\" \"app/**/*.js\" \"builtin/*/src/**/*.js\" \"js/**/*.js\" \"prepare/**/*.js\"",
+    "cli:prepare": "prepare"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/helpers": "^7.14.6",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.14.7",
+    "@electron-forge/cli": "^6.0.0-beta.57",
+    "@electron-forge/maker-deb": "^6.0.0-beta.57",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.57",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
+    "@electron-forge/maker-zip": "^6.0.0-beta.57",
+    "@project-cam/helper": "file:app/header/helper",
+    "@project-cam/prepare": "file:prepare",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^11.4.10",
+    "electron-rebuild": "^3.2.0",
+    "es2015": "0.0.0",
+    "gitignore-fs": "^2.1.0",
+    "has-flag": "^4.0.0",
+    "npm-run-all": "^4.1.5",
+    "object-observer": "^4.7.2",
+    "replace-in-file": "^6.3.2",
+    "sass": "^1.37.5",
+    "semistandard": "^16.0.1",
+    "single-line-log": "^1.1.2",
+    "spark-md5": "^3.0.2",
+    "terser-webpack-plugin": "^5.2.4",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-merge-and-include-globally": "^2.3.4"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.5",
+    "colors": "^1.4.0",
+    "date-and-time": "^1.0.1",
+    "dependency-graph": "^0.11.0",
+    "electron-fetch": "^1.7.4",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-window-state": "^5.0.3",
+    "fs-extra": "^10.0.0",
+    "glob": "^7.1.7",
+    "glob-promise": "^4.2.2",
+    "jsdom": "^17.0.0",
+    "lodash": "^4.17.21",
+    "node-html-parser": "^3.3.6",
+    "semver": "^7.3.5",
+    "sha.js": "^2.4.11",
+    "string-format": "^2.0.0",
+    "systeminformation": "^5.8.6",
+    "util": "^0.12.4"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ],
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "asar": true,
+        "icon": "dist/icon",
+        "ignore": [
+          ".*\\.git$",
+          ".*\\.gitignore$",
+          ".*\\.gitmodules$",
+          ".*\\.md$",
+          "^\\/app\\/docs",
+          "^\\/app\\/header\\/helper\\/.+(?<!dist)(?<!\\/index\\.js)$",
+          "^\\/builtin\\/project-cam-[^\\\\\\/]+\\/.+(?<!component\\.cam\\.json)(?<!dist)(?<!\\/index\\.html)$",
+          "^\\/css",
+          "^\\/demo",
+          "^\\/js",
+          "^\\/prepare",
+          "^\\/screenshots",
+          "^\\/build\\.js$",
+          "^\\/webpack\\.config\\.js$"
+        ],
+        "name": "Project CAM"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "exeName": "Project CAM",
+            "name": "ProjectCAM"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "bin": "Project CAM",
+            "productName": "Project CAM"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {
+            "bin": "Project CAM",
+            "productName": "Project CAM"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "overwrite": true
+          }
+        }
+      ]
+    }
+  },
+  "semistandard": {
+    "globals": [
+      "$",
+      "CodeMirror",
+      "hotkeys",
+      "jQuery",
+      "panzoom"
+    ],
+    "ignore": [
+      "**/dist/",
+      "js/dashboard/elements/Selection/"
+    ],
+    "parser": "babel-eslint"
+  }
+}

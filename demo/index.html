@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <style>
+    #message {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <p>Hello, World!</p>
+  <p>Status: <span id="message">Calculating...</span></p>
+
+  <script>  
+    // The Helper utility will be added to window once the component is loaded
+    window.Helper((event, api, destroy) => {
+      // Load script file through the API
+      api.call('readfile', 'index.js').then((fileContent) => {
+        // Run the script to get the result
+        const sum = eval(fileContent);
+
+        // Push the result to the application
+        api.call('newoutput', { sum }).then(() => {
+          document.getElementById('message').textContent = 'Calculated! Result: ' + sum;
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

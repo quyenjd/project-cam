@@ -1,0 +1,58 @@
+.accordion {
+    display: block;
+    width: 100%;
+
+    &__item {
+        $c: &;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: none;
+        margin-bottom: 0px;
+
+        &:hover {
+            background: rgba($-platinum, 0.5);
+        }
+
+        &__header {
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 0.5rem 1.25rem 0.5rem 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+
+            &::after {
+                display: flex;
+                position: absolute;
+                top: 0;
+                right: 0.5rem;
+                bottom: 0;
+                align-items: center;
+                content: '\f078';
+                font-size: 0.5rem;
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+            }
+        }
+
+        &__body {
+            display: none;
+            width: 100%;
+            padding: 0.25rem 1rem 0.5rem;
+            font-size: 0.8rem;
+            max-height: 10rem;
+            overflow: auto;
+        }
+
+        &.active {
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+            margin-bottom: 0.5rem;
+
+            #{$c}__header::after {
+                content: '\f077';
+            }
+        }
+    }
+}
