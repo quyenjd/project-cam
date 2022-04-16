@@ -193,7 +193,7 @@ sudo apt install dpkg fakeroot rpm
 
 ## Platform
 
-So far, it has only been tested to work on Windows. Any help with extending this list is welcomed.
+Tested on Windows 10 & 11, Ubuntu 20.04 LTS, and macOS Big Sur.
 
 ## Testing
 
