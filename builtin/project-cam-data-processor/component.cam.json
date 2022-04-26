@@ -6,9 +6,7 @@
     "description": "This component is for processing string data using JavaScript editable script.",
     "input": [
         {
-            "limit": 1,
-            "name": "data",
-            "required": true
+            "name": "data"
         }
     ],
     "output": [

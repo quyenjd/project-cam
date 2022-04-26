@@ -1,11 +1,16 @@
 {
   "include": [
-    "src/index.js"
+    "./src/**/*.ts"
   ],
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "dist"
+    "esModuleInterop": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "rootDir": "./",
+    "strict": true,
+    "target": "es6"
   }
 }

@@ -28,6 +28,10 @@
         {
 			"cond": "com/project-cam-port-out@>=1.0.0",
 			"ref": "project-cam-port-out/component.cam.json"
+		},
+        {
+			"cond": "com/project-cam-data-peek@>=1.0.0",
+			"ref": "project-cam-data-peek/component.cam.json"
 		}
     ]
 }

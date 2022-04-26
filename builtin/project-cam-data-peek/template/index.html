@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .block {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.5em;
+    }
+
+    .status {
+      opacity: 0.8;
+      font-size: 0.875em;
+      white-space: pre-wrap;
+    }
+
+    textarea {
+      border: 2px solid #ccc;
+      padding: 5px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="block status">Showing all inputs, each limited to 5 rows of 100 first characters.</div>
+  <textarea id="content" readonly rows="15">No input found.</textarea>
+</body>
+
+</html>

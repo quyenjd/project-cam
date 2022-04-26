@@ -33,7 +33,7 @@ Front-end implementation includes UI elements in [js/dashboard](js/dashboard), a
 
 Back-end implementation including the event collection, package system, logger, and other useful APIs can be found in [app](app).
 
-If you want to know what an element is doing, or you are a component developer and want to know which API is available, please have a look at the documentation within the code. It is written in [JSDOC](https://jsdoc.app/), and it has **typing**! It would be hell if typing was not supported.
+I am using [JSDOC](https://jsdoc.app/) for **typing**! It would be hell if typing was not supported.
 
 ## Extensions
 
@@ -140,6 +140,10 @@ Finally, add the two files required by CAM and we're done for the day.
 ```
 
 The above demonstration might not take advantage of Node and NPM, but it is always a good idea to have the project initialized so you can later install more packages easily and parcel them using [Webpack](https://webpack.js.org/) or any other bundler.
+
+### APIs For Component Development
+
+The full list of all supported events and methods can be found [here](app/header/helper/docs/README.md).
 
 ### Prepare CLI
 

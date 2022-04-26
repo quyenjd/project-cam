@@ -22,9 +22,12 @@ module.exports = class ProcessRequest {
         cwd: _.toString(options.cwd),
         detached: true,
         env: {},
-        execArgv: {},
-        timeout: _.toSafeInteger(options.timeout)
+        execArgv: []
       });
+
+      setTimeout(() => {
+        cp.kill();
+      }, _.toSafeInteger(options.timeout));
 
       _handle(cp, resolve, options.encoding);
     });
@@ -43,7 +46,7 @@ module.exports = class ProcessRequest {
         cwd: _.toString(options.cwd),
         detached: true,
         env: {},
-        execArgv: {},
+        execArgv: [],
         timeout: _.toSafeInteger(options.timeout),
         windowsHide: !!options.windowsHide
       });
@@ -119,9 +122,10 @@ function _handle (cp, resolve, encoding) {
     if (_.isString(chunk)) { stdout += chunk; }
   });
 
-  cp.on('close', (code) => {
+  cp.on('close', (code, signal) => {
     resolve({
       exitCode: code,
+      signal,
       stderr,
       stdout
     });

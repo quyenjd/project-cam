@@ -1,0 +1,10 @@
+/*
+!dist/
+!src/
+!template/
+!.gitignore
+!component.cam.json
+!package.json
+!package-lock.json
+!README.md
+!webpack.config.js

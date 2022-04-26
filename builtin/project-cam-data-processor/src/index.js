@@ -58,7 +58,7 @@ const cm = CodeMirror.fromTextArea(document.getElementById('code'), {
 cm.setValue(`// The code will be run in a Web Worker.
 // To listen to input changes, use \`onmessage\` handler.
 onmessage = function (e) {
-  const input = e.data;
+  const input = e.data; // this is an array of strings
 }
 
 // To push new output to the application, use \`postMessage\` method.
@@ -77,9 +77,9 @@ helper((event, api, destroy) => {
   let worker;
   event.bind('newinput', (newInput) => {
     try {
-      input = newInput.data[0].value;
+      input = newInput.data.map((item) => item.value);
     } catch (err) {
-      input = '';
+      input = [];
     }
     if (worker) {
       worker.postMessage(input);

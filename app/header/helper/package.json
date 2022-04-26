@@ -4,14 +4,14 @@
   "description": "Helper tool to develop components for project-cam",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "build:clean": "rimraf dist",
     "build:start": "cross-env NODE_ENV=production rollup -c",
-    "build:typing": "tsc",
+    "build:ts": "tsc",
     "build:pack:clean": "rimraf ../../../prepare/helper.tar.gz",
     "build:pack:start": "npm-pack-all --output ../../../prepare/helper.tar.gz",
-    "build": "npm-run-all -s build:clean build:start build:typing build:pack:clean build:pack:start"
+    "build": "npm-run-all -s build:clean build:ts build:start build:pack:clean build:pack:start"
   },
   "author": "Quyen Dinh",
   "license": "UNLICENSED",

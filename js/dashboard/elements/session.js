@@ -325,7 +325,7 @@ export default function SessionHandler (containers, obj) {
 
   const componentWrapper = 'componentWrapper';
   const minComponentWrapper = 'minComponentWrapper';
-  const componentWrapperClass = `g-col ${componentWrapper}`;
+  const componentWrapperClass = componentWrapper;
   const minComponentWrapperClass = `g-col-6 g-col-sm-4 g-col-md-3 ${minComponentWrapper}`;
   const componentDefaultEvents = DashboardEvents().on('beforeminimize', function () {
     this.minCompInstance(true).parent().show();
@@ -401,7 +401,7 @@ export default function SessionHandler (containers, obj) {
       const $compBody = $comp.find('.component__body');
       const space = $compBody.outerWidth() - $compBody.width();
       $compBody.css('width', `${Math.max(width - space, comp.options().width)}px`);
-      $comp.width($compBody.outerWidth(true)).parents(`.${componentWrapper}`).width(width);
+      $comp.add($comp.parents(`.${componentWrapper}`)).width($compBody.outerWidth(true));
     };
     $comp.resizable({
       handles: 'se',
@@ -727,6 +727,7 @@ export default function SessionHandler (containers, obj) {
       obj.globals.scroll.cLeft = exports.componentContainer.scrollLeft();
       obj.globals.scroll.mcTop = exports.minComponentContainer.scrollTop();
       obj.globals.scroll.mcLeft = exports.minComponentContainer.scrollLeft();
+      obj.globals.maxZIndex = layerHelper.maxZIndex;
 
       // Save list of components
       const componentList = componentManager.id.getAll();
@@ -849,6 +850,7 @@ export default function SessionHandler (containers, obj) {
       strictMode = obj.globals.strictMode;
       if (strictMode) { exports.hub.restrict(); } else { exports.hub.unstrict(); }
       exports.rename(obj.globals.name);
+      layerHelper.maxZIndex = obj.globals.maxZIndex;
 
       // Import list of components
       const hubState = exports.hub.state.normalize({});
@@ -913,7 +915,7 @@ export default function SessionHandler (containers, obj) {
       /*
       {
         globals: {
-          strictMode, name,
+          strictMode, name, maxZIndex
           scroll: { cTop, cLeft, mcTop, mcLeft }
         },
         components: [{
@@ -961,7 +963,8 @@ export default function SessionHandler (containers, obj) {
       normalizedObj.globals = $.extend(true, {
         strictMode: true,
         name: 'Session',
-        scroll: {}
+        scroll: {},
+        maxZIndex: 0
       }, normalizedObj.globals);
 
       normalizedObj.globals.scroll = $.extend(true, {

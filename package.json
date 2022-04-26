@@ -20,7 +20,8 @@
     "submodules:build": "node build.js",
     "submodules:build:prod": "node build.js --production",
     "lint": "semistandard \"*.js\" \"app/**/*.js\" \"builtin/*/src/**/*.js\" \"js/**/*.js\" \"prepare/**/*.js\"",
-    "cli:prepare": "prepare"
+    "cli:prepare": "prepare",
+    "helperdoc": "typedoc --plugin typedoc-plugin-markdown --out app/header/helper/docs --entryPoints app/header/helper/src/index.ts --tsconfig app/header/helper/tsconfig.json --disableSources --defaultCategory \"Global\" --readme none --name \"Helper Interfaces\""
   },
   "devDependencies": {
     "@babel/cli": "^7.14.5",
@@ -52,6 +53,8 @@
     "single-line-log": "^1.1.2",
     "spark-md5": "^3.0.2",
     "terser-webpack-plugin": "^5.2.4",
+    "typedoc": "^0.22.15",
+    "typedoc-plugin-markdown": "^3.12.1",
     "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2",
     "webpack-merge-and-include-globally": "^2.3.4"
