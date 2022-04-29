@@ -197,6 +197,10 @@ On Linux (Ubuntu specifically), make sure to run this command to install the req
 sudo apt install dpkg fakeroot rpm
 ```
 
+If you have problem with Forge not being able to build the project, try removing the `node_modules` folder and the `package-lock.json` file.
+
+On macOS, make sure to install the module `appdmg` before building using `npm install appdmg --save-dev`.
+
 ## Platform
 
 Tested on Windows 10 & 11, Ubuntu 20.04 LTS, and macOS Big Sur.
