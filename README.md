@@ -145,6 +145,8 @@ The above demonstration might not take advantage of Node and NPM, but it is alwa
 
 The full list of all supported events and methods can be found [here](app/header/helper/docs/README.md).
 
+To re-export the documentation, use `npm run helperdoc`.
+
 ### Prepare CLI
 
 To quickly start a component or package project, it is *highly recommended* that you use the [`prepare`](https://bitbucket.org/hidesignsJP/project-cam-prepare) CLI tool by calling `npm run cli:prepare` to initialize it for you. It comes with a decent template that saves you time.

@@ -1,7 +1,7 @@
 {
   "name": "project-cam",
   "license": "UNLICENSED",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Quyen Dinh",
   "description": "A data-flow component-based automation/visualization tool that scales",
   "main": "app/main.js",
